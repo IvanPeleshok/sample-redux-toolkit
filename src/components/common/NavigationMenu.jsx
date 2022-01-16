@@ -17,8 +17,8 @@ export function NavigationMenu(props) {
     useEffect(() => {
         const buttons = [];
 
-        if (props.order) buttons.push({ onClick: () => goToOrder(), text: resources.Orders });
-        if (props.salads) buttons.push({ onClick: () => goTosalads(), text: resources.ReadySalads });
+        if (props.order) buttons.push({ onClick: goToOrder, text: resources.Orders });
+        if (props.salads) buttons.push({ onClick: goTosalads, text: resources.ReadySalads });
         if (props.molecules) buttons.push({ onClick: goToMolecules, text: resources.Recipe });
 
         setButtons(buttons);
