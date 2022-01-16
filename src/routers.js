@@ -6,29 +6,29 @@ import Salads from "./components/Salads";
 import { withSuspense } from "./hoc/withSuspense";
 
 export const routers = {
-	order: {
-		path: "/order",
-		render: withSuspense(Order),
-		exact: true,
-	},
-	salads: {
-		path: "/salads",
-		render: withSuspense(Salads),
-		exact: true,
-	},
-	saladsById: {
-		path: "/salads/:id",
-		render: withSuspense(SaladById),
-	},
-	molecules: {
-		path: "/molecules",
-		render: withSuspense(Molecules),
-		exact: true,
-	},
-	redirectToStart: {
-		path: "*",
-		render: () => <Redirect to="/order" />,
-	},
+    order: {
+        path: "/order",
+        render: withSuspense(Order),
+        exact: true,
+    },
+    salads: {
+        path: "/salads",
+        render: withSuspense(Salads),
+        exact: true,
+    },
+    saladsById: {
+        path: "/salads/:id",
+        render: withSuspense(SaladById),
+    },
+    molecules: {
+        path: "/molecules",
+        render: withSuspense(Molecules),
+        exact: true,
+    },
+    redirectToStart: {
+        path: "*",
+        render: () => <Redirect to="/order" />,
+    },
 };
 
 export const routersKeys = Object.keys(routers);

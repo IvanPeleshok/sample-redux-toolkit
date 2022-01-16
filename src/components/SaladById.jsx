@@ -10,34 +10,34 @@ import { BasicListCards } from "./common/BasicListCards";
 import { NavigationMenu } from "./common/NavigationMenu";
 
 export default function SaladById() {
-	const params = useParams();
-	const dispatch = useDispatch();
-	const { salad, salads } = useSelector((state) => state.saladReducer);
-	const { composition } = useSelector((state) => state.moleculeReducer);
+    const params = useParams();
+    const dispatch = useDispatch();
+    const { salad, salads } = useSelector((state) => state.saladReducer);
+    const { composition } = useSelector((state) => state.moleculeReducer);
 
-	useEffect(() => {
-		dispatch(getSaladById(params.id));
-	}, [salads]);
+    useEffect(() => {
+        dispatch(getSaladById(params.id));
+    }, [salads]);
 
-	useEffect(() => {
-		dispatch(getComposition(salad));
-	}, [salad]);
+    useEffect(() => {
+        dispatch(getComposition(salad));
+    }, [salad]);
 
-	return (
-		<>
-			<NavigationMenu order salads molecules />
+    return (
+        <>
+            <NavigationMenu order salads molecules />
 
-			{salad && (
-				<>
-					<BasicTitle text={resources.Salad} center />
+            {salad && (
+                <>
+                    <BasicTitle text={resources.Salad} center />
 
-					<BasicCard title={salad.title} width={"100%"} priceText={salad.price} discountText={salad.discount_price} />
+                    <BasicCard title={salad.title} width={"100%"} priceText={salad.price} discountText={salad.discount_price} />
 
-					<BasicTitle text={resources.Molecule} center />
+                    <BasicTitle text={resources.Molecule} center />
 
-					<BasicListCards list={composition} width={300} center />
-				</>
-			)}
-		</>
-	);
+                    <BasicListCards list={composition} width={300} center />
+                </>
+            )}
+        </>
+    );
 }

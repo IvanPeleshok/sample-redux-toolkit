@@ -6,41 +6,41 @@ import { addSalad, checkLock } from "../Salad/SaladSlice";
 import { fetchSalads } from "../Salad/SaladThunks";
 
 export const initApp = createAsyncThunk("initApp", async (_, thunkAPI) => {
-	try {
-		await thunkAPI.dispatch(fetchMolecules());
-		await thunkAPI.dispatch(fetchSalads());
+    try {
+        await thunkAPI.dispatch(fetchMolecules());
+        await thunkAPI.dispatch(fetchSalads());
 
-		const { molecules } = thunkAPI.getState().moleculeReducer;
-		thunkAPI.dispatch(checkLock(molecules));
-	} catch (e) {
-		return thunkAPI.rejectWithValue(e.message);
-	}
+        const { molecules } = thunkAPI.getState().moleculeReducer;
+        thunkAPI.dispatch(checkLock(molecules));
+    } catch (e) {
+        return thunkAPI.rejectWithValue(e.message);
+    }
 });
 
 export const setOrder = createAsyncThunk("setOrder", async (salad, thunkAPI) => {
-	thunkAPI.dispatch(getComposition(salad));
-	thunkAPI.dispatch(updateQuantity());
+    thunkAPI.dispatch(getComposition(salad));
+    thunkAPI.dispatch(updateQuantity());
 
-	const { molecules, composition } = thunkAPI.getState().moleculeReducer;
+    const { molecules, composition } = thunkAPI.getState().moleculeReducer;
 
-	thunkAPI.dispatch(checkLock(molecules));
+    thunkAPI.dispatch(checkLock(molecules));
 
-	const saladOrder = { ...salad, composition };
-	thunkAPI.dispatch(pushOrder(saladOrder));
-	thunkAPI.dispatch(calculate());
+    const saladOrder = { ...salad, composition };
+    thunkAPI.dispatch(pushOrder(saladOrder));
+    thunkAPI.dispatch(calculate());
 });
 
 export const addNewSalad = createAsyncThunk("addNewSalad", async (name, thunkAPI) => {
-	const { reserve } = thunkAPI.getState().moleculeReducer;
+    const { reserve } = thunkAPI.getState().moleculeReducer;
 
-	const newSalad = {
-		title: name,
-		price: reserve.reduce((sum, curr) => sum + curr.qty, 0),
-		composition: reserve.map((element) => element._id),
-		_id: new Date().getTime().toString(),
-	};
+    const newSalad = {
+        title: name,
+        price: reserve.reduce((sum, curr) => sum + curr.qty, 0),
+        composition: reserve.map((element) => element._id),
+        _id: new Date().getTime().toString(),
+    };
 
-	thunkAPI.dispatch(addSalad(newSalad));
-	thunkAPI.dispatch(getComposition(newSalad));
-	thunkAPI.dispatch(createClone());
+    thunkAPI.dispatch(addSalad(newSalad));
+    thunkAPI.dispatch(getComposition(newSalad));
+    thunkAPI.dispatch(createClone());
 });

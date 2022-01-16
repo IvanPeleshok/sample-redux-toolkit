@@ -8,12 +8,12 @@ import App from "./App";
 const store = setupStore();
 
 ReactDOM.render(
-	<React.StrictMode>
-		<Provider store={store}>
-			<Router>
-				<App />
-			</Router>
-		</Provider>
-	</React.StrictMode>,
-	document.getElementById("root")
+    <React.StrictMode>
+        <Provider store={store}>
+            <Router>
+                <App />
+            </Router>
+        </Provider>
+    </React.StrictMode>,
+    document.getElementById("root")
 );

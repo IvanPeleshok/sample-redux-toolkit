@@ -6,23 +6,23 @@ import { initApp } from "./store/reducers/App/AppThunks";
 import "./App.scss";
 
 const App = () => {
-	const dispatch = useDispatch();
+    const dispatch = useDispatch();
 
-	useEffect(() => {
-		dispatch(initApp());
-	}, []);
+    useEffect(() => {
+        dispatch(initApp());
+    }, []);
 
-	return (
-		<>
-			<div className="container">
-				<Switch>
-					{routersKeys.map((key, i) => (
-						<Route key={i} {...routers[key]} />
-					))}
-				</Switch>
-			</div>
-		</>
-	);
+    return (
+        <>
+            <div className="container">
+                <Switch>
+                    {routersKeys.map((key, i) => (
+                        <Route key={i} {...routers[key]} />
+                    ))}
+                </Switch>
+            </div>
+        </>
+    );
 };
 
 export default App;
